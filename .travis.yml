@@ -8,17 +8,9 @@ cache:
 
 php:
   - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - nightly
-  - hhvm
 
 env:
   - DEPS='low'
-  - DEPS='dev'
-  - DEPS='normal'
 
 matrix:
   fast_finish: true
@@ -44,11 +36,6 @@ before_install:
   - sed -n '/prefer-stable/!p' composer.json > tmp.json && mv tmp.json composer.json;
 
 install:
-  - travis_retry composer global require kherge/box --prefer-dist
-  - travis_retry composer global require phing/phing --prefer-dist
-  - travis_retry composer global require satooshi/php-coveralls --prefer-dist
-  - $HOME/.composer/vendor/bin/box --version
-  - $HOME/.composer/vendor/bin/phing -v
   - export COMPOSER_ROOT_VERSION=dev-master
   - travis_retry /bin/bash ./install.sh
 
